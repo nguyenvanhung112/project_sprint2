@@ -14,6 +14,8 @@ import { ListUserComponent } from './component/user/list-user/list-user.componen
 import { RegisterUserComponent } from './component/user/register-user/register-user.component';
 import { LoginComponent } from './component/security/login/login.component';
 import { CartComponent } from './component/order/cart/cart.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,10 @@ import { CartComponent } from './component/order/cart/cart.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

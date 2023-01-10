@@ -13,7 +13,9 @@ export const environment = {
     appId: "1:902879698828:web:2d7346b0c1c599d08540a9",
     measurementId: "G-XEHPX24EFX"
   },
-  production: false
+  production: false,
+  productUrl:"http://localhost:8080/api/v1/products/",
+  productImgUrl:"http://localhost:8080/api/v1/imgs/",
 };
 
 /*
