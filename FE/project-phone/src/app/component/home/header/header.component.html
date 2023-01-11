@@ -19,10 +19,12 @@
     </div>
     <div class="col-lg-4 col-6 text-right">
       <div class="btn-group">
-        <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">Tài khoản</button>
+        <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown"  [hidden]="checkLogin">Tài khoản</button>
+        <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" *ngIf="checkLogin">{{nameAccount}}</button>
         <div class="dropdown-menu">
-          <button routerLink="login" class="dropdown-item" type="button">Đăng nhập</button>
-          <button class="dropdown-item" type="button">Đăng xuất</button>
+
+          <button *ngIf="!checkLogin" routerLink="login" class="dropdown-item" type="button">Đăng nhập</button>
+          <button *ngIf="checkLogin" (click)="logOut()" class="dropdown-item" type="button">Đăng xuất</button>
         </div>
       </div>
     </div>
@@ -51,8 +53,8 @@
                 <a href="" class="dropdown-item">Oppo</a>
               </div>
             </div>
-            <a routerLink="list-products" class="nav-item nav-link">Quản lí sản phẩm</a>
-            <a routerLink="list-users" class="nav-item nav-link">Quản lí người dùng</a>
+            <a *ngIf="checkLogin && accountRole == 'ROLE_ADMIN'" routerLink="list-products" class="nav-item nav-link">Quản lí sản phẩm</a>
+            <a *ngIf="checkLogin && accountRole == 'ROLE_ADMIN'" routerLink="list-users" class="nav-item nav-link">Quản lí người dùng</a>
           </div>
           <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
             <a routerLink="cart" class="btn px-0 ml-3">
