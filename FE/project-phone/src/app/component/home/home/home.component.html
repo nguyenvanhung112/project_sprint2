@@ -88,15 +88,15 @@
             <div class="product-img position-relative overflow-hidden" >
               <img class="img-fluid w-100" src="{{product.urls}}" alt="">
               <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                <a class="btn btn-outline-dark btn-square" routerLink="cart"><i class="fa fa-shopping-cart"></i></a>
+<!--                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>-->
+                <a class="btn btn-outline-dark btn-square" [routerLink]="['/detail/', product.id]"><i class="fa fa-info"></i></a>
               </div>
             </div>
             <div class="text-center py-4">
               <a class="h6 text-decoration-none text-truncate" [routerLink]="['/detail/', product.id]">{{product.name}}</a>
               <div class="d-flex align-items-center justify-content-center mt-2">
-                <h5>{{product.price|currency:'VND'}}<sup>đ</sup></h5>
+                <h5>{{product.price|number}}<sup>đ</sup></h5>
               </div>
             </div>
           </div>

@@ -23,7 +23,10 @@ export class DetailComponent implements OnInit {
 
   listStorage: StorageCapacity[] = [];
 
+  productDetail: ProductDetail;
   listColor: Color[] = [];
+
+  storage
   constructor(private _productService: ProductService,
               private _activeRoute: ActivatedRoute) {
   }
@@ -61,16 +64,17 @@ export class DetailComponent implements OnInit {
       })
       this._productService.getListProductDetail(this.id).subscribe(listProductDeteail => {
         this.productDetailList = listProductDeteail;
+        this.productDetail = this.productDetailList[0];
       })
-      this._productService.getListStorageByProductId(this.id).subscribe(listStorage=>{
+      this._productService.getListStorageByProductId(this.id).subscribe(listStorage => {
         this.listStorage = listStorage;
       })
-      this._productService.getListColorByProductId(this.id).subscribe(listColor=>{
+      this._productService.getListColorByProductId(this.id).subscribe(listColor => {
         this.listColor = listColor;
       })
     })
   }
 
-  getProductDetail(storageId,colorId) {
+  getProductDetail(storageId, colorId) {
   }
 }
