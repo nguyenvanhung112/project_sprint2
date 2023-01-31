@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {AuthService} from "../../../service/account/auth.service";
 import {Router} from "@angular/router";
 import {TokenService} from "../../../service/account/token.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
               private _authService: AuthService,
               private _router: Router,
-              private _tokenService:TokenService) { }
+              private _tokenService:TokenService,
+              private _toast : ToastrService) { }
 
   ngOnInit(): void {
     this.getFormLogin();
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
           location.reload();
         })
       }
+      this._toast.error("Tên đăng nhập hoặc mật khẩu khôn đúng!")
     })
   }
 }

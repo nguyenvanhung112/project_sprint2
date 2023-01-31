@@ -6,16 +6,16 @@
       <img src="../../../../assets/img/logo.jpg" style="height: 100px; width: 100px">
     </div>
     <div class="col-lg-4 col-6 text-left">
-      <form action="">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
-          <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-          </div>
-        </div>
-      </form>
+<!--      <form action="">-->
+<!--        <div class="input-group">-->
+<!--          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">-->
+<!--          <div class="input-group-append">-->
+<!--                            <span class="input-group-text bg-transparent text-primary">-->
+<!--                                <i class="fa fa-search"></i>-->
+<!--                            </span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </form>-->
     </div>
     <div class="col-lg-4 col-6 text-right">
       <div class="btn-group">
@@ -44,15 +44,15 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
           <div class="navbar-nav mr-auto py-0">
             <a routerLink=""  class="nav-item nav-link">Trang chủ</a>
-            <div class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sản phẩm <i class="fa fa-angle-down mt-1"></i></a>
-              <div class="dropdown-menu rounded-0 border-0 m-0">
-                <a href="" class="dropdown-item">Apple</a>
-                <a href="" class="dropdown-item">Samsung</a>
-                <a href="" class="dropdown-item">Xiami</a>
-                <a href="" class="dropdown-item">Oppo</a>
-              </div>
-            </div>
+<!--            <div class="nav-item dropdown">-->
+<!--              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Sản phẩm <i class="fa fa-angle-down mt-1"></i></a>-->
+<!--              <div class="dropdown-menu rounded-0 border-0 m-0">-->
+<!--                <a href="" class="dropdown-item">Apple</a>-->
+<!--                <a href="" class="dropdown-item">Samsung</a>-->
+<!--                <a href="" class="dropdown-item">Xiami</a>-->
+<!--                <a href="" class="dropdown-item">Oppo</a>-->
+<!--              </div>-->
+<!--            </div>-->
             <a *ngIf="checkLogin && accountRole == 'ROLE_ADMIN'" routerLink="list-products" class="nav-item nav-link">Quản lí sản phẩm</a>
             <a *ngIf="checkLogin && accountRole == 'ROLE_ADMIN'" routerLink="list-users" class="nav-item nav-link">Quản lí người dùng</a>
           </div>

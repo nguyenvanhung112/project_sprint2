@@ -16,6 +16,7 @@ import {Color} from "../../../model/product/color";
 export class DetailComponent implements OnInit {
 
   idStorage: number;
+
   id: number;
   product: Product;
   imgUrlProductList: ImgUrlProduct[] = [];
@@ -26,7 +27,9 @@ export class DetailComponent implements OnInit {
   productDetail: ProductDetail;
   listColor: Color[] = [];
 
+  storageCapacity: string;
   storage
+
   constructor(private _productService: ProductService,
               private _activeRoute: ActivatedRoute) {
   }
@@ -51,6 +54,7 @@ export class DetailComponent implements OnInit {
     });
 
     this.getProduct();
+
   }
 
   getProduct() {
@@ -58,23 +62,59 @@ export class DetailComponent implements OnInit {
       this.id = +paramMap.get("id");
       this._productService.findProductById(this.id).subscribe(product => {
         this.product = product;
-      })
-      this._productService.getListImgProduct(this.id).subscribe(listImg => {
-        this.imgUrlProductList = listImg;
-      })
-      this._productService.getListProductDetail(this.id).subscribe(listProductDeteail => {
-        this.productDetailList = listProductDeteail;
-        this.productDetail = this.productDetailList[0];
-      })
-      this._productService.getListStorageByProductId(this.id).subscribe(listStorage => {
-        this.listStorage = listStorage;
-      })
-      this._productService.getListColorByProductId(this.id).subscribe(listColor => {
-        this.listColor = listColor;
+        console.log(product)
+        this.getListImg(this.id)
+        this.getListProductDetail(this.id)
+        this.getListStorage(this.id)
       })
     })
   }
 
-  getProductDetail(storageId, colorId) {
+  getProductDetail(storage, color) {
+    this._productService.getProductDetail(this.product.id,storage,color).subscribe(productDetail=>{
+      this.productDetail = productDetail;
+    })
+  }
+
+  getListImg(id) {
+    this._productService.getListImgProduct(id).subscribe(listImg => {
+      this.imgUrlProductList = listImg;
+      console.log(listImg)
+    })
+  }
+
+  getListProductDetail(id) {
+    this._productService.getListProductDetail(id).subscribe(listProductDeteail => {
+      this.productDetailList = listProductDeteail;
+      this.productDetail = this.productDetailList[0];
+      this.storageCapacity = this.productDetail.storageCapacity.name;
+      this.getListColor(id)
+      console.log("dung luong 1", this.productDetail.storageCapacity.name)
+      console.log(listProductDeteail)
+    })
+  }
+
+  getListStorage(id) {
+    this._productService.getListStorageByProductId(id).subscribe(listStorage => {
+      this.listStorage = listStorage;
+      console.log(listStorage)
+    })
+  }
+
+  getListColor(id) {
+    console.log("dung luong", this.storageCapacity)
+    this._productService.getListColorByProductId(id, this.storageCapacity).subscribe(colors => {
+      this.listColor = colors;
+      console.log(colors)
+    })
+  }
+
+  getListColorChange(storage: string) {
+    this._productService.getListColorByProductId(this.product.id, storage).subscribe(colors => {
+      this.storageCapacity = storage;
+      this.listColor = colors;
+      this.getProductDetail(storage,this.listColor[0].name)
+      console.log(colors)
+    })
   }
 }

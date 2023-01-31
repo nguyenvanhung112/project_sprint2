@@ -47,43 +47,60 @@
 <!-- Featured Start -->
 <div class="container-fluid pt-5">
   <div class="row px-xl-5 pb-3">
-    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Apple')">
       <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
         <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-apple.jpg" style="height: 50px;width: 50px">
-        <h5 class="font-weight-semi-bold m-0">Apple</h5>
+        <h5 class="font-weight-semi-bold m-0" >Apple</h5>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Samsung')">
       <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
         <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-samsung.jpg"
              style="height: 50px;width: 70px">
-        <h5 class="font-weight-semi-bold m-0">Samsung</h5>
+        <h5 class="font-weight-semi-bold m-0" >Samsung</h5>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Xiaomi')" >
       <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
         <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-xiaomi.png"
              style="height: 50px;width: 50px">
         <h5 class="font-weight-semi-bold m-0">Xiaomi</h5>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Oppo')">
       <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
         <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-oppo.jpg" style="height: 50px;width: 50px">
-        <h5 class="font-weight-semi-bold m-0">Oppo</h5>
+        <h5 class="font-weight-semi-bold m-0" >Oppo</h5>
       </div>
     </div>
   </div>
 </div>
 <!-- Featured End -->
+<div class="container-fluid">
+  <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex">
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4 col-6 text-left">
 
+              <div class="input-group">
+                <input #nameProduct type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
+                <div class="input-group-append">
+                  <button class="input-group-text bg-transparent text-primary" (click)="searchProduct(nameProduct.value)"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+
+    </div>
+    <div class="col-lg-4 col-6 text-right">
+    </div>
+  </div>
+</div>
 <!-- Shop Start -->
 <div class="container-fluid">
   <div class="row px-xl-5">
     <!-- Shop Product Start -->
     <div class="col-lg-12 col-md-8">
       <div class="row pb-3">
-        <div class="col-lg-4 col-md-6 col-sm-6 pb-1" *ngFor="let product of productDisplayHomeList,let i = index" >
+        <div class="col-lg-4 col-md-6 col-sm-6 pb-1" *ngFor="let product of productDisplayHomeList,let i = index " >
           <div class="product-item bg-light mb-4" >
             <div class="product-img position-relative overflow-hidden" >
               <img class="img-fluid w-100" src="{{product.urls}}" alt="">
@@ -94,7 +111,7 @@
               </div>
             </div>
             <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" [routerLink]="['/detail/', product.id]">{{product.name}}</a>
+              <a class="h6 text-decoration-none text-truncate" [routerLink]="['/detail/', product.id]"><h5>{{product.name}}</h5></a>
               <div class="d-flex align-items-center justify-content-center mt-2">
                 <h5>{{product.price|number}}<sup>đ</sup></h5>
               </div>
@@ -102,15 +119,7 @@
           </div>
         </div>
         <div class="col-12">
-          <nav>
-            <ul class="pagination justify-content-center">
-              <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
+
         </div>
       </div>
     </div>

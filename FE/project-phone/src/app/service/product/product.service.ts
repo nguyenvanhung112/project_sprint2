@@ -7,6 +7,7 @@ import {ImgUrlProduct} from "../../model/product/img-url-product";
 import {Product} from "../../model/product/product";
 import {ProductDetail} from "../../model/product/product-detail";
 import {StorageCapacity} from "../../model/product/storage-capacity";
+import {Color} from "../../model/product/color";
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,19 @@ export class ProductService {
 
   }
 
-  getListColorByProductId(id: number) {
-    return this._httpClient.get<StorageCapacity[]>(environment.productUrl + "color/" + id);
+  getListColorByProductId(id: number,storage:string):Observable<Color[]> {
+    return this._httpClient.get<Color[]>(environment.productUrl + "color-Productdetails/?id=" + id + "&storage=" + storage);
+  }
+
+  getProductDetail(id, storage, color):Observable<ProductDetail> {
+    return this._httpClient.get<ProductDetail>(environment.productUrl + "productDetail-find/?id=" + id + "&storage=" + storage + "&color=" + color);
+  }
+
+  getListProductByCategory(category):Observable<ProductDisplayHome[]> {
+    return this._httpClient.get<ProductDisplayHome[]>(environment.productUrl + "product-detail/category/" + category);
+  }
+
+  searchProduct(nameProduct):Observable<ProductDisplayHome[]> {
+    return this._httpClient.get<ProductDisplayHome[]>(environment.productUrl + "product-detail/search/" + nameProduct);
   }
 }

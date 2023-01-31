@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
 
 
   imgProductList: ImgUrlProduct[] = [];
+  p:number = 1;
 
   constructor(private _productService: ProductService) {
   }
@@ -33,5 +34,28 @@ export class HomeComponent implements OnInit {
         value.urls = value.urls.split(',')[0];
       })
     })
+  }
+
+  displayMobile(category) {
+    this._productService.getListProductByCategory(category).subscribe(productList =>{
+      this.productDisplayHomeList = productList;
+      this.productDisplayHomeList.forEach(value => {
+        value.urls = value.urls.split(',')[0];
+      })
+      }
+    )
+  }
+
+  searchProduct(nameProduct) {
+    if (nameProduct != ''){
+      this._productService.searchProduct(nameProduct).subscribe(productList=>{
+        this.productDisplayHomeList = productList;
+        this.productDisplayHomeList.forEach(value => {
+          value.urls = value.urls.split(',')[0];
+        })
+      })
+    }else {
+      this.ngOnInit();
+    }
   }
 }
