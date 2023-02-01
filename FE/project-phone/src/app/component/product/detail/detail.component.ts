@@ -28,7 +28,7 @@ export class DetailComponent implements OnInit {
   listColor: Color[] = [];
 
   storageCapacity: string;
-  storage
+
 
   constructor(private _productService: ProductService,
               private _activeRoute: ActivatedRoute) {
@@ -52,9 +52,7 @@ export class DetailComponent implements OnInit {
       }
       button.parent().parent().find('input').val(newVal);
     });
-
     this.getProduct();
-
   }
 
   getProduct() {
@@ -62,7 +60,6 @@ export class DetailComponent implements OnInit {
       this.id = +paramMap.get("id");
       this._productService.findProductById(this.id).subscribe(product => {
         this.product = product;
-        console.log(product)
         this.getListImg(this.id)
         this.getListProductDetail(this.id)
         this.getListStorage(this.id)
@@ -89,23 +86,18 @@ export class DetailComponent implements OnInit {
       this.productDetail = this.productDetailList[0];
       this.storageCapacity = this.productDetail.storageCapacity.name;
       this.getListColor(id)
-      console.log("dung luong 1", this.productDetail.storageCapacity.name)
-      console.log(listProductDeteail)
     })
   }
 
   getListStorage(id) {
     this._productService.getListStorageByProductId(id).subscribe(listStorage => {
       this.listStorage = listStorage;
-      console.log(listStorage)
     })
   }
 
   getListColor(id) {
-    console.log("dung luong", this.storageCapacity)
     this._productService.getListColorByProductId(id, this.storageCapacity).subscribe(colors => {
       this.listColor = colors;
-      console.log(colors)
     })
   }
 
@@ -114,7 +106,6 @@ export class DetailComponent implements OnInit {
       this.storageCapacity = storage;
       this.listColor = colors;
       this.getProductDetail(storage,this.listColor[0].name)
-      console.log(colors)
     })
   }
 }

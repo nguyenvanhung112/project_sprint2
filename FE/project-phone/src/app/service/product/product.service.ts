@@ -53,4 +53,8 @@ export class ProductService {
   searchProduct(nameProduct):Observable<ProductDisplayHome[]> {
     return this._httpClient.get<ProductDisplayHome[]>(environment.productUrl + "product-detail/search/" + nameProduct);
   }
+
+  search(formSearch: any):Observable<any> {
+    return this._httpClient.post<any>(environment.productUrl + "search" , formSearch);
+  }
 }

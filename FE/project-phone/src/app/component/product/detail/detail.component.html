@@ -27,23 +27,23 @@
         <h3>{{product.name}} {{storageCapacity}}</h3>
         <div class="d-flex mb-3">
           <strong class="text-dark mr-3">Dung lượng:</strong>
-          <form>
+<!--          <form>-->
             <div class="custom-control custom-radio custom-control-inline"
                  *ngFor="let storage of listStorage,let i = index">
               <input [checked]="storage.id == productDetail.storageCapacity.id"  type="radio" class="custom-control-input" id="size-{{i}}" name="size" (click)="getListColorChange(storage.name)" >
               <label class="custom-control-label" for="size-{{i}}">{{storage.name}}</label>
             </div>
-          </form>
+<!--          </form>-->
         </div>
         <div class="d-flex mb-4">
           <strong class="text-dark mr-3">Màu:</strong>
-          <form>
+<!--          <form>-->
             <div class="custom-control custom-radio custom-control-inline"
                  *ngFor="let color of listColor,let i = index">
               <input [checked]="color.id == productDetail.color.id"  type="radio" class="custom-control-input" id="color-{{i}}" name="color" (click)="getProductDetail(storageCapacity,color.name)">
               <label class="custom-control-label" for="color-{{i}}">{{color.name}}</label>
             </div>
-          </form>
+<!--          </form>-->
         </div>
         <h4 class="font-weight-semi-bold mb-4">{{productDetail.price|number}}<sup>đ</sup></h4>
         <p class="mb-4">{{product.description}}</p>

@@ -17,9 +17,7 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
     if (this._tokenService.isLogged()) {
-
       const roles = this._tokenService.getRole();
       for (let i = 0; i < roles.length; i++) {
         if ((roles[i]) === 'ROLE_ADMIN') {

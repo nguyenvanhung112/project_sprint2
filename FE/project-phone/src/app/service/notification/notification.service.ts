@@ -13,7 +13,7 @@ export class NotificationService {
     this._toastrService.success(message, 'Thông Báo', {
       timeOut: 2000,
       progressBar: true,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-left',
       easing: 'ease-in'
     });
   }
@@ -22,7 +22,7 @@ export class NotificationService {
     this._toastrService.error(message, 'Lỗi', {
       timeOut: 2000,
       progressBar: true,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-left',
       easing: 'ease-in'
     });
   }
@@ -31,7 +31,7 @@ export class NotificationService {
     this._toastrService.warning(message, 'Cảnh báo', {
       timeOut: 2000,
       progressBar: true,
-      positionClass: 'toast-top-right',
+      positionClass: 'toast-bottom-left',
       easing: 'ease-in'
     });
   }

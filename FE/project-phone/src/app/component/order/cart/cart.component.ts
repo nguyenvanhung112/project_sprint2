@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from "jquery";
+import {TokenService} from "../../../service/account/token.service";
+import {User} from "../../../model/user/user";
+import {ProductDetail} from "../../../model/product/product-detail";
+import {OrderService} from "../../../service/order/order.service";
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +12,11 @@ import * as $ from "jquery";
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+
+  user: User;
+  listProductDetail: ProductDetail[];
+  constructor(private _tokenService: TokenService,
+              private _orderService: OrderService) { }
 
   ngOnInit(): void {
     // Product Quantity
@@ -28,6 +36,12 @@ export class CartComponent implements OnInit {
       }
       button.parent().parent().find('input').val(newVal);
     });
+    this.getOrder();
   }
 
+  getOrder(){
+    this.user = JSON.parse(this._tokenService.getUser());
+    console.log(this.user.id);
+
+  }
 }

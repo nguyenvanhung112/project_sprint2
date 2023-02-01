@@ -45,73 +45,93 @@
   </div>
 </div>
 <!-- Featured Start -->
-<div class="container-fluid pt-5">
-  <div class="row px-xl-5 pb-3">
-    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Apple')">
-      <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-        <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-apple.jpg" style="height: 50px;width: 50px">
-        <h5 class="font-weight-semi-bold m-0" >Apple</h5>
+
+  <div class="container-fluid pt-5">
+    <div class="row px-xl-5 pb-3">
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Apple')">
+        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+          <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-apple.jpg"
+               style="height: 50px;width: 50px">
+          <h5 class="font-weight-semi-bold m-0">Apple</h5>
+        </div>
       </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Samsung')">
-      <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-        <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-samsung.jpg"
-             style="height: 50px;width: 70px">
-        <h5 class="font-weight-semi-bold m-0" >Samsung</h5>
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Samsung')">
+        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+          <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-samsung.jpg"
+               style="height: 50px;width: 70px">
+          <h5 class="font-weight-semi-bold m-0">Samsung</h5>
+        </div>
       </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Xiaomi')" >
-      <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-        <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-xiaomi.png"
-             style="height: 50px;width: 50px">
-        <h5 class="font-weight-semi-bold m-0">Xiaomi</h5>
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Xiaomi')">
+        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+          <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-xiaomi.png"
+               style="height: 50px;width: 50px">
+          <h5 class="font-weight-semi-bold m-0">Xiaomi</h5>
+        </div>
       </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Oppo')">
-      <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-        <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-oppo.jpg" style="height: 50px;width: 50px">
-        <h5 class="font-weight-semi-bold m-0" >Oppo</h5>
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Oppo')">
+        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+          <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-oppo.jpg"
+               style="height: 50px;width: 50px">
+          <h5 class="font-weight-semi-bold m-0">Oppo</h5>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- Featured End -->
-<div class="container-fluid">
-  <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex">
-    <div class="col-lg-4">
-    </div>
-    <div class="col-lg-4 col-6 text-left">
+<form [formGroup]="rfSeach" (change)="search()">
+  <!-- Featured End -->
+  <div class="container-fluid">
+    <div class="row align-items-center py-3 px-xl-5 d-none d-lg-flex">
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-4 col-6">
+        <div class="input-group">
+          <input formControlName="name" type="text" class="form-control" placeholder="Tìm kiếm tên sản phẩm">
+          <div class="input-group-append">
+            <button class="input-group-text bg-transparent text-primary"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
 
-              <div class="input-group">
-                <input #nameProduct type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
-                <div class="input-group-append">
-                  <button class="input-group-text bg-transparent text-primary" (click)="searchProduct(nameProduct.value)"><i class="fa fa-search"></i></button>
-                </div>
-              </div>
-
-    </div>
-    <div class="col-lg-4 col-6 text-right">
+      </div>
+      <div class="col-lg-4 col-6">
+        <select formControlName="price">
+          <option [value]="'0,300000000'">Tìm kiếm theo giá</option>
+          <option [value]="'0,5000000'">Giá dưới 5 triệu</option>
+          <option [value]="'5000000,10000000'">Giá từ 5 triệu - 10 triệu</option>
+          <option [value]="'10000000,15000000'">Giá từ 10 triệu - 15 triệu</option>
+          <option [value]="'15000000,20000000'">Giá từ 15 triệu - 20 triệu</option>
+          <option [value]="'20000000,300000000'">Giá trên 20 triệu</option>
+        </select>
+        <select formControlName="category">
+          <option [value]="''">Tìm kiếm theo hãng</option>
+          <option [value]="'Apple'">Apple</option>
+          <option [value]="'Samsung'">Samsung</option>
+          <option [value]="'Oppo'">Oppo</option>
+          <option [value]="'Xiaomi'">Xiaomi</option>
+        </select>
+      </div>
     </div>
   </div>
-</div>
+</form>
 <!-- Shop Start -->
 <div class="container-fluid">
   <div class="row px-xl-5">
     <!-- Shop Product Start -->
     <div class="col-lg-12 col-md-8">
       <div class="row pb-3">
-        <div class="col-lg-4 col-md-6 col-sm-6 pb-1" *ngFor="let product of productDisplayHomeList,let i = index " >
-          <div class="product-item bg-light mb-4" >
-            <div class="product-img position-relative overflow-hidden" >
+        <div class="col-lg-4 col-md-6 col-sm-6 pb-1" *ngFor="let product of productDisplayHomeList,let i = index ">
+          <div class="product-item bg-light mb-4">
+            <div class="product-img position-relative overflow-hidden">
               <img class="img-fluid w-100" src="{{product.urls}}" alt="">
               <div class="product-action">
                 <a class="btn btn-outline-dark btn-square" routerLink="cart"><i class="fa fa-shopping-cart"></i></a>
-<!--                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>-->
-                <a class="btn btn-outline-dark btn-square" [routerLink]="['/detail/', product.id]"><i class="fa fa-info"></i></a>
+                <a class="btn btn-outline-dark btn-square" [routerLink]="['/detail/', product.id]"><i
+                  class="fa fa-info"></i></a>
               </div>
             </div>
             <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" [routerLink]="['/detail/', product.id]"><h5>{{product.name}}</h5></a>
+              <a class="h6 text-decoration-none text-truncate" [routerLink]="['/detail/', product.id]">
+                <h5>{{product.name}}</h5></a>
               <div class="d-flex align-items-center justify-content-center mt-2">
                 <h5>{{product.price|number}}<sup>đ</sup></h5>
               </div>
