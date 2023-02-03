@@ -4,6 +4,7 @@ import {TokenService} from "../../../service/account/token.service";
 import {User} from "../../../model/user/user";
 import {ProductDetail} from "../../../model/product/product-detail";
 import {OrderService} from "../../../service/order/order.service";
+import {OrderDetail} from "../../../model/order/order-detail";
 
 @Component({
   selector: 'app-cart',
@@ -15,33 +16,30 @@ export class CartComponent implements OnInit {
 
   user: User;
   listProductDetail: ProductDetail[];
+
+  cart : OrderDetail[];
   constructor(private _tokenService: TokenService,
               private _orderService: OrderService) { }
 
   ngOnInit(): void {
-    // Product Quantity
-    $('.quantity button').on('click', function () {
-      var button = $(this);
-      var oldValue = button.parent().parent().find('input').val();
-      if (button.hasClass('btn-plus')) {
-        // @ts-ignore
-        var newVal = parseFloat(oldValue) + 1;
-      } else {
-        if (oldValue > 0) {
-          // @ts-ignore
-          var newVal = parseFloat(oldValue) - 1;
-        } else {
-          newVal = 0;
-        }
-      }
-      button.parent().parent().find('input').val(newVal);
-    });
+
     this.getOrder();
   }
 
   getOrder(){
     this.user = JSON.parse(this._tokenService.getUser());
     console.log(this.user.id);
+    this._orderService.getCart(this.user.id).subscribe(data=>{
+      this.cart = data;
+    })
+  }
+
+
+  minus(id: number) {
+
+  }
+
+  plus(id: number) {
 
   }
 }

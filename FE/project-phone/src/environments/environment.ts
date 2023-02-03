@@ -16,6 +16,7 @@ export const environment = {
   production: false,
   productUrl:"http://localhost:8080/api/v1/products/",
   productImgUrl:"http://localhost:8080/api/v1/imgs/",
+  orderUrl:"http://localhost:8080/api/order/"
 };
 
 /*

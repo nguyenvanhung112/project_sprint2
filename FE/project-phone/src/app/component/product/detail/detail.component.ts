@@ -7,6 +7,10 @@ import {ImgUrlProduct} from "../../../model/product/img-url-product";
 import {ProductDetail} from "../../../model/product/product-detail";
 import {StorageCapacity} from "../../../model/product/storage-capacity";
 import {Color} from "../../../model/product/color";
+import {TokenService} from "../../../service/account/token.service";
+import {User} from "../../../model/user/user";
+import {OrderService} from "../../../service/order/order.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-detail',
@@ -16,7 +20,7 @@ import {Color} from "../../../model/product/color";
 export class DetailComponent implements OnInit {
 
   idStorage: number;
-
+  user: User;
   id: number;
   product: Product;
   imgUrlProductList: ImgUrlProduct[] = [];
@@ -29,9 +33,15 @@ export class DetailComponent implements OnInit {
 
   storageCapacity: string;
 
+  cart: ProductDetail[];
+
+  orderForm: FormGroup;
 
   constructor(private _productService: ProductService,
-              private _activeRoute: ActivatedRoute) {
+              private _activeRoute: ActivatedRoute,
+              private _tokenService: TokenService,
+              private _orderService: OrderService,
+              private _formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -68,7 +78,7 @@ export class DetailComponent implements OnInit {
   }
 
   getProductDetail(storage, color) {
-    this._productService.getProductDetail(this.product.id,storage,color).subscribe(productDetail=>{
+    this._productService.getProductDetail(this.product.id, storage, color).subscribe(productDetail => {
       this.productDetail = productDetail;
     })
   }
@@ -105,7 +115,28 @@ export class DetailComponent implements OnInit {
     this._productService.getListColorByProductId(this.product.id, storage).subscribe(colors => {
       this.storageCapacity = storage;
       this.listColor = colors;
-      this.getProductDetail(storage,this.listColor[0].name)
+      this.getProductDetail(storage, this.listColor[0].name)
+    })
+  }
+
+
+  getFormOrder(user) {
+    this.orderForm = this._formBuilder.group({
+      userId: [user.id]
+    })
+  }
+
+  add(id: number, quantity) {
+    this.user = JSON.parse(this._tokenService.getUser());
+    console.log(this.user.id);
+    this._orderService.getCart(this.user.id).subscribe(data => {
+      this.cart = data;
+    }, error => {
+      this.getFormOrder(this.user)
+      console.log(this.orderForm.value)
+      this._orderService.addOrder(this.orderForm.value).subscribe(data=>{
+        console.log(data)
+      })
     })
   }
 }
