@@ -11,6 +11,7 @@ import {TokenService} from "../../../service/account/token.service";
 import {User} from "../../../model/user/user";
 import {OrderService} from "../../../service/order/order.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-detail',
@@ -41,7 +42,8 @@ export class DetailComponent implements OnInit {
               private _activeRoute: ActivatedRoute,
               private _tokenService: TokenService,
               private _orderService: OrderService,
-              private _formBuilder: FormBuilder) {
+              private _formBuilder: FormBuilder,
+              private _toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -120,23 +122,25 @@ export class DetailComponent implements OnInit {
   }
 
 
-  getFormOrder(user) {
+  getFormOrder(productDetailId,quantity,user) {
     this.orderForm = this._formBuilder.group({
-      userId: [user.id]
+      user: [user.id],
+      quantity:[quantity],
+      productDetail:[productDetailId]
     })
   }
 
-  add(id: number, quantity) {
+  add(id, quantity) {
     this.user = JSON.parse(this._tokenService.getUser());
+    console.log(this.user)
+    if (this.user == null){
+        this._toast.error("Bạn cần phải đăng nhập để đặt hàng")
+    }
     console.log(this.user.id);
-    this._orderService.getCart(this.user.id).subscribe(data => {
-      this.cart = data;
-    }, error => {
-      this.getFormOrder(this.user)
-      console.log(this.orderForm.value)
-      this._orderService.addOrder(this.orderForm.value).subscribe(data=>{
-        console.log(data)
-      })
+    this.getFormOrder(id,quantity,this.user)
+    console.log(this.orderForm.value)
+    this._orderService.addOrder(this.orderForm.value).subscribe(data=>{
+      console.log(data)
     })
   }
 }

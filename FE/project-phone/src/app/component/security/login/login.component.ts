@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
           location.reload();
         })
       }
+    },error => {
       this._toast.error("Tên đăng nhập hoặc mật khẩu khôn đúng!")
     })
   }

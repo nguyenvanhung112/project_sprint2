@@ -17,12 +17,12 @@ export class CartComponent implements OnInit {
   user: User;
   listProductDetail: ProductDetail[];
 
+  totalPrice: number = 0;
   cart : OrderDetail[];
   constructor(private _tokenService: TokenService,
               private _orderService: OrderService) { }
 
   ngOnInit(): void {
-
     this.getOrder();
   }
 
@@ -31,6 +31,10 @@ export class CartComponent implements OnInit {
     console.log(this.user.id);
     this._orderService.getCart(this.user.id).subscribe(data=>{
       this.cart = data;
+      console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        this.totalPrice = this.totalPrice + this.cart[i].quantity * parseInt(this.cart[i].productDetail.price);
+      }
     })
   }
 
