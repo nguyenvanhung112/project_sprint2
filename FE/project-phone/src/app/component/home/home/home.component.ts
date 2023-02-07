@@ -6,6 +6,7 @@ import {ProductService} from "../../../service/product/product.service";
 import {ImgUrlProduct} from "../../../model/product/img-url-product";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {TokenService} from "../../../service/account/token.service";
 
 @Component({
   selector: 'app-home',
@@ -21,11 +22,13 @@ export class HomeComponent implements OnInit {
   rfSeach: FormGroup;
 
   imgProductList: ImgUrlProduct[] = [];
-  p: number = 1;
+
+  pageData: any;
 
   constructor(private _productService: ProductService,
               private _formBuilder: FormBuilder,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private _tokenService: TokenService) {
   }
 
   ngOnInit(): void {
@@ -45,8 +48,11 @@ export class HomeComponent implements OnInit {
 
   search() {
     console.log(this.rfSeach.value)
-    this._productService.search(this.rfSeach.value).subscribe(data => {
+    this._productService.search(this.rfSeach.value,0).subscribe(data => {
+      this.pageData=data;
+      console.log(this.pageData);
       this.productDisplayHomeList = data.content;
+      console.log(this.productDisplayHomeList);
       this.productDisplayHomeList.forEach(value => {
         value.urls = value.urls.split(',')[0];
       })
@@ -76,16 +82,28 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  searchProduct(nameProduct) {
-    if (nameProduct != '') {
-      this._productService.searchProduct(nameProduct).subscribe(productList => {
-        this.productDisplayHomeList = productList;
-        this.productDisplayHomeList.forEach(value => {
-          value.urls = value.urls.split(',')[0];
-        })
+  // searchProduct(nameProduct) {
+  //   if (nameProduct != '') {
+  //     this._productService.searchProduct(nameProduct).subscribe(productList => {
+  //       this.productDisplayHomeList = productList;
+  //       this.productDisplayHomeList.forEach(value => {
+  //         value.urls = value.urls.split(',')[0];
+  //       })
+  //     })
+  //   } else {
+  //     this.ngOnInit();
+  //   }
+  // }
+
+  goToPage(number: number) {
+    this._productService.search(this.rfSeach.value,number).subscribe(data => {
+      this.productDisplayHomeList = data.content;
+      this.pageData = data;
+      this.productDisplayHomeList.forEach(value => {
+        value.urls = value.urls.split(',')[0];
       })
-    } else {
-      this.ngOnInit();
-    }
+    }, error => {
+      this.toast.error('Không tìm thấy sản phẩm theo yêu cầu');
+    })
   }
 }

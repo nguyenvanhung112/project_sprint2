@@ -54,7 +54,7 @@ export class ProductService {
     return this._httpClient.get<ProductDisplayHome[]>(environment.productUrl + "product-detail/search/" + nameProduct);
   }
 
-  search(formSearch: any):Observable<any> {
-    return this._httpClient.post<any>(environment.productUrl + "search" , formSearch);
+  search(formSearch: any,number):Observable<any> {
+    return this._httpClient.post<any>(environment.productUrl + "search?page=" + number , formSearch);
   }
 }

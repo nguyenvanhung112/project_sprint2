@@ -46,38 +46,38 @@
 </div>
 <!-- Featured Start -->
 
-  <div class="container-fluid pt-5">
-    <div class="row px-xl-5 pb-3">
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Apple')">
-        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-          <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-apple.jpg"
-               style="height: 50px;width: 50px">
-          <h5 class="font-weight-semi-bold m-0">Apple</h5>
-        </div>
+<div class="container-fluid pt-5">
+  <div class="row px-xl-5 pb-3">
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Apple')">
+      <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+        <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-apple.jpg"
+             style="height: 50px;width: 50px">
+        <h5 class="font-weight-semi-bold m-0">Apple</h5>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Samsung')">
-        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-          <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-samsung.jpg"
-               style="height: 50px;width: 70px">
-          <h5 class="font-weight-semi-bold m-0">Samsung</h5>
-        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Samsung')">
+      <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+        <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-samsung.jpg"
+             style="height: 50px;width: 70px">
+        <h5 class="font-weight-semi-bold m-0">Samsung</h5>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Xiaomi')">
-        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-          <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-xiaomi.png"
-               style="height: 50px;width: 50px">
-          <h5 class="font-weight-semi-bold m-0">Xiaomi</h5>
-        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Xiaomi')">
+      <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+        <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-xiaomi.png"
+             style="height: 50px;width: 50px">
+        <h5 class="font-weight-semi-bold m-0">Xiaomi</h5>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Oppo')">
-        <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
-          <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-oppo.jpg"
-               style="height: 50px;width: 50px">
-          <h5 class="font-weight-semi-bold m-0">Oppo</h5>
-        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" (click)="displayMobile('Oppo')">
+      <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
+        <img class="text-primary m-0 mr-3" src="../../../../assets/img/logo-oppo.jpg"
+             style="height: 50px;width: 50px">
+        <h5 class="font-weight-semi-bold m-0">Oppo</h5>
       </div>
     </div>
   </div>
+</div>
 <form [formGroup]="rfSeach" (change)="search()">
   <!-- Featured End -->
   <div class="container-fluid">
@@ -124,7 +124,7 @@
             <div class="product-img position-relative overflow-hidden">
               <img class="img-fluid w-100" src="{{product.urls}}" alt="">
               <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" routerLink="cart"><i class="fa fa-shopping-cart"></i></a>
+<!--                <a class="btn btn-outline-dark btn-square" routerLink="cart"><i class="fa fa-shopping-cart"></i></a>-->
                 <a class="btn btn-outline-dark btn-square" [routerLink]="['/detail/', product.id]"><i
                   class="fa fa-info"></i></a>
               </div>
@@ -140,6 +140,20 @@
         </div>
         <div class="col-12">
 
+          <nav>
+            <ul class="pagination justify-content-center" *ngIf="pageData">
+              <li class="page-item" [ngClass]="pageData.pageable.pageNumber == 0 ? 'disabled': ''">
+                <button class="page-link" (click)="goToPage(pageData.number -1)">
+                Trước</button>
+              </li>
+              <li class="page-item"><span class="page-link">{{pageData.pageable.pageNumber + 1}}
+                /{{pageData.totalPages}}</span></li>
+              <li class="page-item" [ngClass]="pageData.pageable.pageNumber + 1 == pageData.totalPages ?'disabled': ''">
+                <button class="page-link" (click)="goToPage(pageData.number +1)">
+               Sau</button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
