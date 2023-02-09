@@ -18,6 +18,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { HistoryComponent } from './component/user/history/history.component';
+import { InfoComponent } from './component/user/info/info.component';
+import { PaymentComponent } from './component/order/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ListUserComponent,
     RegisterUserComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
+    HistoryComponent,
+    InfoComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

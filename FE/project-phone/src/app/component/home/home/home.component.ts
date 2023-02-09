@@ -50,9 +50,7 @@ export class HomeComponent implements OnInit {
     console.log(this.rfSeach.value)
     this._productService.search(this.rfSeach.value,0).subscribe(data => {
       this.pageData=data;
-      console.log(this.pageData);
       this.productDisplayHomeList = data.content;
-      console.log(this.productDisplayHomeList);
       this.productDisplayHomeList.forEach(value => {
         value.urls = value.urls.split(',')[0];
       })

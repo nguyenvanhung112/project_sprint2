@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         })
       }
     },error => {
-      this._toast.error("Tên đăng nhập hoặc mật khẩu khôn đúng!")
+      this._toast.error("Tên đăng nhập hoặc mật khẩu không đúng!")
     })
   }
 }

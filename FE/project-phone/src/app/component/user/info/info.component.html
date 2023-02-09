@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row px-xl-5">
+    <div class="col-lg-2">
+    </div>
+    <div class="col-lg-8">
+      <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Thông tin cá nhân</span></h5>
+      <div class="bg-light p-30 mb-5">
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label>Họ</label>
+            <input class="form-control" type="text" value="{{user.firstName}}">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Tên</label>
+            <input class="form-control" type="text" value="{{user.lastName}}">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>E-mail</label>
+            <input class="form-control" type="text" value="{{user.email}}">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Số điện thoại</label>
+            <input class="form-control" type="text" value="{{user.phone}}">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Xã,Phường</label>
+            <input class="form-control" type="text" value="{{user.address.town}}">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Quận</label>
+            <input class="form-control" type="text" value="{{user.address.district}}">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Quốc gia</label>
+            <input class="form-control" type="text" value="{{user.address.country}}">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Thành phố</label>
+            <input class="form-control" type="text" value="{{user.address.city}}">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Địa chỉ chi tiết</label>
+            <input class="form-control" type="text" value="{{user.address.detailAddress}}">
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Ghi chú</label>
+            <input class="form-control" type="text" >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+    </div>
+  </div>
+</div>

@@ -94,21 +94,27 @@
 
       </div>
       <div class="col-lg-4 col-6">
-        <select formControlName="price">
-          <option [value]="'0,300000000'">Tìm kiếm theo giá</option>
-          <option [value]="'0,5000000'">Giá dưới 5 triệu</option>
-          <option [value]="'5000000,10000000'">Giá từ 5 triệu - 10 triệu</option>
-          <option [value]="'10000000,15000000'">Giá từ 10 triệu - 15 triệu</option>
-          <option [value]="'15000000,20000000'">Giá từ 15 triệu - 20 triệu</option>
-          <option [value]="'20000000,300000000'">Giá trên 20 triệu</option>
-        </select>
-        <select formControlName="category">
-          <option [value]="''">Tìm kiếm theo hãng</option>
-          <option [value]="'Apple'">Apple</option>
-          <option [value]="'Samsung'">Samsung</option>
-          <option [value]="'Oppo'">Oppo</option>
-          <option [value]="'Xiaomi'">Xiaomi</option>
-        </select>
+        <div class="row">
+          <div class="col-lg-6">
+            <select class="form-control" formControlName="price">
+              <option [value]="'0,300000000'">Tìm kiếm theo giá</option>
+              <option [value]="'0,5000000'">Giá dưới 5 triệu</option>
+              <option [value]="'5000000,10000000'">Giá từ 5 triệu - 10 triệu</option>
+              <option [value]="'10000000,15000000'">Giá từ 10 triệu - 15 triệu</option>
+              <option [value]="'15000000,20000000'">Giá từ 15 triệu - 20 triệu</option>
+              <option [value]="'20000000,300000000'">Giá trên 20 triệu</option>
+            </select>
+          </div>
+          <div class="col-lg-6">
+            <select class="form-control" formControlName="category">
+              <option [value]="''">Tìm kiếm theo hãng</option>
+              <option [value]="'Apple'">Apple</option>
+              <option [value]="'Samsung'">Samsung</option>
+              <option [value]="'Oppo'">Oppo</option>
+              <option [value]="'Xiaomi'">Xiaomi</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -124,7 +130,7 @@
             <div class="product-img position-relative overflow-hidden">
               <img class="img-fluid w-100" src="{{product.urls}}" alt="">
               <div class="product-action">
-<!--                <a class="btn btn-outline-dark btn-square" routerLink="cart"><i class="fa fa-shopping-cart"></i></a>-->
+                <!--                <a class="btn btn-outline-dark btn-square" routerLink="cart"><i class="fa fa-shopping-cart"></i></a>-->
                 <a class="btn btn-outline-dark btn-square" [routerLink]="['/detail/', product.id]"><i
                   class="fa fa-info"></i></a>
               </div>
@@ -144,13 +150,15 @@
             <ul class="pagination justify-content-center" *ngIf="pageData">
               <li class="page-item" [ngClass]="pageData.pageable.pageNumber == 0 ? 'disabled': ''">
                 <button class="page-link" (click)="goToPage(pageData.number -1)">
-                Trước</button>
+                  Trước
+                </button>
               </li>
               <li class="page-item"><span class="page-link">{{pageData.pageable.pageNumber + 1}}
                 /{{pageData.totalPages}}</span></li>
               <li class="page-item" [ngClass]="pageData.pageable.pageNumber + 1 == pageData.totalPages ?'disabled': ''">
                 <button class="page-link" (click)="goToPage(pageData.number +1)">
-               Sau</button>
+                  Sau
+                </button>
               </li>
             </ul>
           </nav>

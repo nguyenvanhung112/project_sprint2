@@ -9,6 +9,9 @@ import {CartComponent} from "./component/order/cart/cart.component";
 import {AuthGuard} from "./component/security/guard/auth.guard";
 import {AdminGuard} from "./component/security/guard/admin.guard";
 import {UserGuard} from "./component/security/guard/user.guard";
+import {HistoryComponent} from "./component/user/history/history.component";
+import {InfoComponent} from "./component/user/info/info.component";
+import {PaymentComponent} from "./component/order/payment/payment.component";
 
 
 const routes: Routes = [
@@ -32,8 +35,16 @@ const routes: Routes = [
   },
   {
     path: "cart", component: CartComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: "history", component: HistoryComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: "info", component: InfoComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: "payment", component: PaymentComponent, canActivate: [AuthGuard]
   }
-
 ];
 
 @NgModule({

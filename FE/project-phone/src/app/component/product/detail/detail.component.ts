@@ -47,7 +47,6 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Product Quantity
     $('.quantity button').on('click', function () {
       var button = $(this);
       var oldValue = button.parent().parent().find('input').val();
@@ -72,9 +71,9 @@ export class DetailComponent implements OnInit {
       this.id = +paramMap.get("id");
       this._productService.findProductById(this.id).subscribe(product => {
         this.product = product;
-        this.getListImg(this.id)
-        this.getListProductDetail(this.id)
-        this.getListStorage(this.id)
+        this.getListImg(this.id);
+        this.getListProductDetail(this.id);
+        this.getListStorage(this.id);
       })
     })
   }
@@ -88,7 +87,6 @@ export class DetailComponent implements OnInit {
   getListImg(id) {
     this._productService.getListImgProduct(id).subscribe(listImg => {
       this.imgUrlProductList = listImg;
-      console.log(listImg)
     })
   }
 
@@ -117,7 +115,7 @@ export class DetailComponent implements OnInit {
     this._productService.getListColorByProductId(this.product.id, storage).subscribe(colors => {
       this.storageCapacity = storage;
       this.listColor = colors;
-      this.getProductDetail(storage, this.listColor[0].name)
+      this.getProductDetail(storage, this.listColor[0].name);
     })
   }
 
@@ -132,15 +130,12 @@ export class DetailComponent implements OnInit {
 
   add(id, quantity) {
     this.user = JSON.parse(this._tokenService.getUser());
-    console.log(this.user)
     if (this.user == null){
-        this._toast.error("Bạn cần phải đăng nhập để đặt hàng")
+        this._toast.error("Bạn cần phải đăng nhập để đặt hàng");
     }
-    console.log(this.user.id);
-    this.getFormOrder(id,quantity,this.user)
-    console.log(this.orderForm.value)
+    this.getFormOrder(id,quantity,this.user);
     this._orderService.addOrder(this.orderForm.value).subscribe(data=>{
-      console.log(data)
+        this._toast.success("Đặt hàng thành công");
     })
   }
 }
